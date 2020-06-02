@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ static_url('bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ static_url('chat.css') }}" type="text/css">
+</head>
+<body>
+<div class="chat-window">
+    <div class="top-menu">
+        <div class="buttons">
+            <div class="button close"></div>
+            <div class="button minimize"></div>
+            <div class="button maximize"></div>
+        </div>
+        <div class="title">Chat</div>
+    </div>
+
+    <ul class="messages"></ul>
+
+    <div class="bottom-wrapper clearfix">
+        <div class="message-input-wrapper">
+            <input class="message-input" placeholder="Type your message here..."/>
+        </div>
+        <div class="send-message">
+            <div class="icon"></div>
+            <div class="text">Send</div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ static_url('jquery.min.js') }}" type="text/javascript"></script>
+<script src="{{ static_url('bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ static_url('chat.js') }}" type="text/javascript"></script>
+</body>
+</html>
