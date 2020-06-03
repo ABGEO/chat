@@ -22,29 +22,43 @@
     };
 
     $(function () {
+        const webSockets = new WebSocket('ws://' + location.host + '/chat-socket');
         const messageInput = $('.message-input');
         const messages = $('.messages');
+        // TODO: Ask username and store it.
+        const currentUser = window.localStorage.getItem('user');
 
-        const sendMessage = function (text) {
-            if (text.trim() === '') {
+        const sendMessage = function () {
+            if (messageInput.val().trim() === '') {
                 return;
             }
 
-            const message = new Message(text, 'right');
-            message.draw();
+            const message = {
+                body: messageInput.val(),
+                user: currentUser,
+            };
+
             messageInput.val('');
 
-            return messages.animate({scrollTop: messages.prop('scrollHeight')}, 300);
+            return webSockets.send(JSON.stringify(message));
         };
 
         $('.send-message').click(function (e) {
-            return sendMessage(messageInput.val());
+            return sendMessage();
         });
 
         messageInput.keyup(function (e) {
             if (e.which === 13) {
-                return sendMessage(messageInput.val());
+                return sendMessage();
             }
         });
+
+        webSockets.onmessage = function (e) {
+            const socketMessage = JSON.parse(e.data);
+            const message = new Message(socketMessage.body, currentUser === socketMessage.user ? 'right' : 'left');
+            message.draw();
+
+            return messages.animate({scrollTop: messages.prop('scrollHeight')}, 300);
+        };
     });
 }.call(this));

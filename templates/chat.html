@@ -18,7 +18,16 @@
         <div class="title">Chat</div>
     </div>
 
-    <ul class="messages"></ul>
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="message left appeared">
+                <div class="avatar"></div>
+                <div class="text-wrapper">
+                    <div class="text">{{ message['body'] }}</div>
+                </div>
+            </li>
+        {% end %}
+    </ul>
 
     <div class="bottom-wrapper clearfix">
         <div class="message-input-wrapper">
