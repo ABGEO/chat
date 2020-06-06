@@ -4,7 +4,7 @@
             return function () {
                 const message = $(`
                     <li class="message ${side}">
-                        <div class="avatar"></div>
+                        <div class="avatar"><span>${user[0]}</span></div>
                         <div class="text-wrapper">
                             <div class="text">${text}</div>
                             <div class="author">${user}</div>

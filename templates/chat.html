@@ -35,7 +35,7 @@
         <ul class="messages">
             {% for message in messages %}
             <li class="message appeared {% if current_user ==  message['user'] %}right{% else %}left{% end %}">
-                <div class="avatar"></div>
+                <div class="avatar"><span>{{ message['user'][0] }}</span></div>
                 <div class="text-wrapper">
                     <div class="text">{{ message['body'] }}</div>
                     <div class="author">{{ message['user'] }}</div>

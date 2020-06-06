@@ -129,8 +129,17 @@ body {
 .messages .message .avatar {
     width: 60px;
     height: 60px;
+    line-height: 60px;
     border-radius: 50%;
     display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.messages .message .avatar span {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .messages .message .text-wrapper {
