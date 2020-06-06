@@ -50,6 +50,7 @@
             }
 
             currentUser = usernameInput.val();
+            document.cookie = `currentUser=${currentUser}`;
             $('.authentication').attr('hidden', true);
             $('.chat').attr('hidden', false);
             $('.window').css('height', '500px');

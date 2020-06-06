@@ -34,7 +34,7 @@
     <div class="chat" hidden>
         <ul class="messages">
             {% for message in messages %}
-            <li class="message left appeared">
+            <li class="message appeared {% if current_user ==  message['user'] %}right{% else %}left{% end %}">
                 <div class="avatar"></div>
                 <div class="text-wrapper">
                     <div class="text">{{ message['body'] }}</div>

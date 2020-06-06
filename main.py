@@ -14,7 +14,7 @@ define("debug", default=True, help="run in debug mode")
 
 class ChatHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("chat.html", messages=ChatSocketHandler.messages)
+        self.render("chat.html", messages=ChatSocketHandler.messages, current_user=self.get_cookie("currentUser"))
 
 
 class ChatSocketHandler(tornado.websocket.WebSocketHandler):
