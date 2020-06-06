@@ -23,7 +23,7 @@
     };
 
     $(function () {
-        const webSockets = new WebSocket('ws://' + location.host + '/chat-socket');
+        const webSockets = new WebSocket('wss://' + location.host + '/chat-socket');
         const messageInput = $('.message-input');
         const usernameInput = $('.username-input');
         const messages = $('.messages');
