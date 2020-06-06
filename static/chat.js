@@ -1,5 +1,5 @@
 (function () {
-    const Message = function (text, side) {
+    const Message = function (text, user, side) {
         this.draw = function (_this) {
             return function () {
                 const message = $(`
@@ -7,6 +7,7 @@
                         <div class="avatar"></div>
                         <div class="text-wrapper">
                             <div class="text">${text}</div>
+                            <div class="author">${user}</div>
                         </div>
                     </li>
                 `);
@@ -24,9 +25,9 @@
     $(function () {
         const webSockets = new WebSocket('ws://' + location.host + '/chat-socket');
         const messageInput = $('.message-input');
+        const usernameInput = $('.username-input');
         const messages = $('.messages');
-        // TODO: Ask username and store it.
-        const currentUser = window.localStorage.getItem('user');
+        let currentUser = null;
 
         const sendMessage = function () {
             if (messageInput.val().trim() === '') {
@@ -43,6 +44,29 @@
             return webSockets.send(JSON.stringify(message));
         };
 
+        const authenticate = function () {
+            if (usernameInput.val().trim() === '') {
+                return;
+            }
+
+            currentUser = usernameInput.val();
+            $('.authentication').attr('hidden', true);
+            $('.chat').attr('hidden', false);
+            $('.window').css('height', '500px');
+
+            return currentUser;
+        };
+
+        $('.join-chat').click(function (e) {
+            return authenticate();
+        });
+
+        usernameInput.keyup(function (e) {
+            if (e.which === 13) {
+                return authenticate();
+            }
+        });
+
         $('.send-message').click(function (e) {
             return sendMessage();
         });
@@ -55,7 +79,11 @@
 
         webSockets.onmessage = function (e) {
             const socketMessage = JSON.parse(e.data);
-            const message = new Message(socketMessage.body, currentUser === socketMessage.user ? 'right' : 'left');
+            const message = new Message(
+                socketMessage.body,
+                socketMessage.user + (currentUser === socketMessage.user ? ' (Me)' : ''),
+                currentUser === socketMessage.user ? 'right' : 'left'
+            );
             message.draw();
 
             return messages.animate({scrollTop: messages.prop('scrollHeight')}, 300);

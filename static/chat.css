@@ -7,11 +7,10 @@ body {
     font-family: "Calibri", "Roboto", sans-serif;
 }
 
-.chat-window {
+.window {
     position: absolute;
     width: calc(100% - 20px);
     max-width: 800px;
-    height: 500px;
     border-radius: 10px;
     left: 50%;
     top: 50%;
@@ -120,6 +119,13 @@ body {
     opacity: 1;
 }
 
+.message .author {
+    font-size: 12px;
+    margin-top: 10px;
+    color: #8b8681;
+    font-weight: bold;
+}
+
 .messages .message .avatar {
     width: 60px;
     height: 60px;
@@ -162,14 +168,17 @@ body {
 }
 
 .bottom-wrapper {
-    width: 100%;
-    background-color: #fff;
-    padding: 20px 20px;
     position: absolute;
     bottom: 0;
 }
 
-.bottom-wrapper .message-input-wrapper {
+.bottom-wrapper, .top-wrapper {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 20px;
+}
+
+.input-wrapper {
     display: inline-block;
     height: 50px;
     border-radius: 25px;
@@ -179,7 +188,7 @@ body {
     padding: 0 20px;
 }
 
-.bottom-wrapper .message-input-wrapper .message-input {
+.input {
     border: none;
     height: 100%;
     box-sizing: border-box;
@@ -189,7 +198,7 @@ body {
     color: gray;
 }
 
-.bottom-wrapper .send-message {
+.button-block {
     width: 140px;
     height: 50px;
     display: inline-block;
@@ -203,12 +212,12 @@ body {
     float: right;
 }
 
-.bottom-wrapper .send-message:hover {
+.button-block:hover {
     color: #a3d063;
     background-color: #fff;
 }
 
-.bottom-wrapper .send-message .text {
+.button-block .text {
     font-size: 18px;
     font-weight: 300;
     display: inline-block;

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ static_url('chat.css') }}" type="text/css">
 </head>
 <body>
-<div class="chat-window">
+<div class="window">
     <div class="top-menu">
         <div class="buttons">
             <div class="button close"></div>
@@ -19,24 +19,39 @@
         <div class="title">Chat</div>
     </div>
 
-    <ul class="messages">
-        {% for message in messages %}
+    <div class="authentication">
+        <div class="top-wrapper clearfix">
+            <div class="input-wrapper">
+                <input class="input username-input" placeholder="Enter your Username"/>
+            </div>
+            <div class="button-block join-chat">
+                <div class="icon"></div>
+                <div class="text">Join to Chat</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat" hidden>
+        <ul class="messages">
+            {% for message in messages %}
             <li class="message left appeared">
                 <div class="avatar"></div>
                 <div class="text-wrapper">
                     <div class="text">{{ message['body'] }}</div>
+                    <div class="author">{{ message['user'] }}</div>
                 </div>
             </li>
-        {% end %}
-    </ul>
+            {% end %}
+        </ul>
 
-    <div class="bottom-wrapper clearfix">
-        <div class="message-input-wrapper">
-            <input class="message-input" placeholder="Type your message here..."/>
-        </div>
-        <div class="send-message">
-            <div class="icon"></div>
-            <div class="text">Send</div>
+        <div class="bottom-wrapper clearfix">
+            <div class="input-wrapper">
+                <input class="input message-input" placeholder="Type your message here..."/>
+            </div>
+            <div class="button-block send-message">
+                <div class="icon"></div>
+                <div class="text">Send</div>
+            </div>
         </div>
     </div>
 </div>
