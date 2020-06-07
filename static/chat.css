@@ -236,3 +236,10 @@ body {
 .message-template {
     display: none;
 }
+
+footer {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 30px;
+}
